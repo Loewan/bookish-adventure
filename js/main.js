@@ -1,6 +1,19 @@
 $(function() {
   init();
   console.log("Main INIT called")
+
+  /*
+    unique?
+    piece on sq
+    side
+    castle
+    enpass
+
+    posKey ^= RandNum for all pces on sq
+    posKey ^= RandNum side
+
+  */
+
 });
 
 function InitFilesRanksBrd() {
@@ -26,7 +39,20 @@ function InitFilesRanksBrd() {
 
 }
 
+function InitHashKeys(){
+  for (var i = 0; i < 14 * 120; i++) {
+    PieceKeys[i] = RAND_32();
+  }
+
+  SideKey = RAND_32();
+
+  for (var i = 0; i < 16; i++) {
+    CastleKeys[i] = RAND_32();
+  }
+}
+
 function init() {
   console.log("init() called");
   InitFilesRanksBrd();
+  InitHashKeys();
 }
