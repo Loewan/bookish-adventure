@@ -51,6 +51,30 @@ function InitHashKeys(){
   }
 }
 
+function InitSq120To64(){
+  var file = FILES.A;
+  var rank = RANKS.R1;
+  var sq = SQUARES.A1;
+  var sq64 = 0;
+
+  for (var i = 0; i < BRD_SQ_NUM; i++) {
+    Sq120ToSq64[i] = 65;
+  }
+
+  for (var i = 0; i < 64; i++) {
+    Sq64ToSq120[i] = 120;
+  }
+
+  for (rank = RANKS.R1; rank <= RANKS.R8; rank++) {
+    for (file = FILES.A; file <= FILES.H; file++) {
+      sq = FR2SQ(file, rank);
+      Sq64ToSq120[sq64] = sq;
+      Sq120ToSq64[sq] = sq64;
+      sq64++;
+    }
+  }
+}
+
 function init() {
   console.log("init() called");
   InitFilesRanksBrd();

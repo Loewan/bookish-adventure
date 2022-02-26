@@ -40,7 +40,7 @@ function GeneratePosKey() {
   finalKey ^= CastleKeys[GameBoard.castlePerm];
 
   return finalKey;
-  }
+}
 
 
 
