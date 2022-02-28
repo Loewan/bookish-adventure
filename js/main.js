@@ -1,6 +1,8 @@
 $(function() {
   init();
   console.log("Main INIT called")
+  ParseFen(START_FEN);
+  PrintBoard();
 
   /*
     unique?

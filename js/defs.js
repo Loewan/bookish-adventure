@@ -1,4 +1,4 @@
-const PIECES = { EMPTY:0, wP:1, wN:2, wB:3, wR:4, wQ:5, wK:6, bp:7, bN:8, bB:9, bR:10, bQ:11, bK:12 };
+const PIECES = { EMPTY:0, wP:1, wN:2, wB:3, wR:4, wQ:5, wK:6, bP:7, bN:8, bB:9, bR:10, bQ:11, bK:12 };
 const BRD_SQ_NUM = 120;
 const FILES = {A:0, B:1, C:2, D:3, E:4, F:5, G:6, H:7, NONE:8};
 const RANKS = {R1:0, R2:1, R3:2, R4:3, R5:4, R6:5, R7:6, R8:7, NONE:8};
@@ -14,6 +14,13 @@ const MAXDEPTH = 64;
 
 var FilesBrd = new Array(BRD_SQ_NUM);
 var RanksBrd = new Array(BRD_SQ_NUM);
+
+const START_FEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
+var PceChar = ".PNBRQKpnbrqk";
+var SideChar = "wb-";
+var RankChar = "12345678";
+var FileChar = "abcdefgh";
 
 function FR2SQ(f,r) {
   return ( (21 + f) + (r * 10));
