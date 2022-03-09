@@ -80,15 +80,19 @@ function GeneratePosKey() {
   return finalKey;
 }
 
-function ResetBoard() {
+function PrintPieceLists() {
+  var piece, pceNum;
 
-  for (var i = 0; i < BRD_SQ_NUM; i++) {
-    GameBoard.pieces[i] = SQUARES.OFFBOARD;
+  for(piece = PIECES.wP; piece <= PIECES.bK; piece++){
+    for(pceNum = 0; pceNum < GameBoard.pceNum[piece]; pceNum++) {
+      console.log('Piece ' + PceChar[piece] + ' on ' + PrSq(GameBoard.pList[PCEINDEX(piece, pceNum)]));
+    }
   }
+}
 
-  for (var i = 0; i < 64; i++) {
-    GameBoard.pieces[SQ120(i)] = PIECES.EMPTY;
-  }
+function UpdateListsMaterials() {
+
+  var piece, sq, index, color;
 
   for (var i = 0; i < 14 * 120; i++) {
     GameBoard.pList[i] = PIECES.EMPTY;
@@ -100,6 +104,34 @@ function ResetBoard() {
 
   for (var i = 0; i < 13; i++) {
     GameBoard.pceNum[i] = 0;
+  }
+
+  for (index = 0; index < 64; index++) {
+    sq = SQ120(index);
+    piece = GameBoard.pieces[sq];
+
+    if (piece != PIECES.EMPTY) {
+      color = PieceCol[piece];
+
+      GameBoard.material[color] += PieceVal[piece];
+
+      GameBoard.pList[PCEINDEX(piece, GameBoard.pceNum[piece])] = sq;
+      GameBoard.pceNum[piece]++;
+    }
+  }
+
+  PrintPieceLists();
+  
+}
+
+function ResetBoard() {
+
+  for (var i = 0; i < BRD_SQ_NUM; i++) {
+    GameBoard.pieces[i] = SQUARES.OFFBOARD;
+  }
+
+  for (var i = 0; i < 64; i++) {
+    GameBoard.pieces[SQ120(i)] = PIECES.EMPTY;
   }
 
   GameBoard.side = COLORS.both;
@@ -201,7 +233,7 @@ function ParseFen(fen) {
   }
 
   GameBoard.posKey = GeneratePosKey();
-
+  UpdateListsMaterials();
 }
 
 /*
