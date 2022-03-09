@@ -1,0 +1,11 @@
+body {
+  padding: 1%;
+}
+
+#FenInDiv {
+  position: relative;
+}
+
+#fenIn {
+  width: 30%;
+}
