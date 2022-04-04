@@ -20,6 +20,9 @@ function GenerateMoves() {
     var pceType;
     var pceNum;
     var sq;
+    var pceIndex;
+    var pce;
+    var t_sq;
 
     if (GameBoard.side == COLORS.white) {
         pceType = PIECES.wP;
@@ -67,7 +70,6 @@ function GenerateMoves() {
             }
         }
 
-        pceType = PIECES.wN;
     } else {
         pceType = PIECES.bP;
 
@@ -113,7 +115,7 @@ function GenerateMoves() {
                 }
             }
         }
-        pceType = PIECES.bN;
+
     }
 
 }

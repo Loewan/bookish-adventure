@@ -45,6 +45,11 @@ var RkDir = [-1, -10, 1, 10];
 var BiDir = [-9, -11, 11, 9];
 var KiDir = [-1, -10, 1, 10, -9, -11, 11, 9];
 
+var DirNum = [0, 0, 8, 4, 4, 8, 8, 0, 8, 4, 4, 8, 8];
+var PceDir = [0, 0, KnDir, BiDir, RkDir, KiDir, KiDir, 0, KnDir, BiDir, RkDir, KiDir, KiDir];
+var LoopNonSlidePce = [PIECES.wN, PIECES.wK, 0, PIECES.bN, PIECES.bK, 0];
+var LoopNonSlideIndex = [0, 3];
+
 var PieceKeys = new Array(14*120);
 var SideKey;
 var CastleKeys = new Array(16);
