@@ -3,6 +3,7 @@ $(function() {
   console.log("Main INIT called")
   ParseFen(START_FEN);
   PrintBoard();
+  GenerateMoves();
 
   /*
     unique?

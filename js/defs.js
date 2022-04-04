@@ -97,3 +97,7 @@ var MFLAGPROM = 0xF00000;
 
 var NOMOVE = 0;
 
+function SQOFFBOARD(sq) {
+  if(FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
+  return BOOL.FALSE;
+}

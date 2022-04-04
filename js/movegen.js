@@ -15,7 +15,7 @@ for(index = GameBoard.moveListStart[1]; index < GameBoard.moveListStart[2]; inde
 
 function GenerateMoves() {
 
-    GameBoaord.moveListStart[GameBoard.ply + 1] = GameBoard.moveListStart[GameBoard.ply];
+    GameBoard.moveListStart[GameBoard.ply + 1] = GameBoard.moveListStart[GameBoard.ply];
 
     var pceType;
     var pceNum;
