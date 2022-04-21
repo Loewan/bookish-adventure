@@ -24,13 +24,13 @@ function InitFilesRanksBrd() {
   var rank = RANKS.R1;
   var sq = SQUARES.A1;
 
-  for (var i = 0; i < BRD_SQ_NUM; i++) {
+  for (var i = 0; i < BRD_SQ_NUM; ++i) {
     FilesBrd[i] = SQUARES.OFFBOARD;
     RanksBrd[i] = SQUARES.OFFBOARD
   }
 
-  for (rank = RANKS.R1; rank <= RANKS.R8; rank++) {
-    for (file = FILES.A; file <= FILES.H; file++) {
+  for (rank = RANKS.R1; rank <= RANKS.R8; ++rank) {
+    for (file = FILES.A; file <= FILES.H; ++file) {
       sq = FR2SQ(file, rank);
       FilesBrd[sq] = file;
       RanksBrd[sq] = rank;
@@ -43,7 +43,7 @@ function InitFilesRanksBrd() {
 }
 
 function InitHashKeys(){
-  for (var i = 0; i < 14 * 120; i++) {
+  for (var i = 0; i < 14 * 120; ++i) {
     PieceKeys[i] = RAND_32();
   }
 

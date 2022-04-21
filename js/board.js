@@ -60,7 +60,7 @@ function GeneratePosKey() {
   var finalKey = 0;
   var piece = PIECES.EMPTY;
 
-  for(sq = 0; sq < BRD_SQ_NUM; sq++) {
+  for(sq = 0; sq < BRD_SQ_NUM; ++sq) {
     piece = GameBoard.pieces[sq];
     if(piece != PIECES.EMPTY && piece != SQUARES.OFFBOARD) {
       finalKey ^= PieceKeys[(piece * 120) + sq];
@@ -83,8 +83,8 @@ function GeneratePosKey() {
 function PrintPieceLists() {
   var piece, pceNum;
 
-  for(piece = PIECES.wP; piece <= PIECES.bK; piece++){
-    for(pceNum = 0; pceNum < GameBoard.pceNum[piece]; pceNum++) {
+  for(piece = PIECES.wP; piece <= PIECES.bK; ++piece){
+    for(pceNum = 0; pceNum < GameBoard.pceNum[piece]; ++pceNum) {
       console.log('Piece ' + PceChar[piece] + ' on ' + PrSq(GameBoard.pList[PCEINDEX(piece, pceNum)]));
     }
   }
@@ -94,19 +94,19 @@ function UpdateListsMaterials() {
 
   var piece, sq, index, color;
 
-  for (var i = 0; i < 14 * 120; i++) {
+  for (var i = 0; i < 14 * 120; ++i) {
     GameBoard.pList[i] = PIECES.EMPTY;
   }
 
-  for (var i = 0; i < 2; i++) {
+  for (var i = 0; i < 2; ++i) {
     GameBoard.material[i] = 0;
   }
 
-  for (var i = 0; i < 13; i++) {
+  for (var i = 0; i < 13; ++i) {
     GameBoard.pceNum[i] = 0;
   }
 
-  for (index = 0; index < 64; index++) {
+  for (index = 0; index < 64; ++index) {
     sq = SQ120(index);
     piece = GameBoard.pieces[sq];
 
@@ -126,11 +126,11 @@ function UpdateListsMaterials() {
 
 function ResetBoard() {
 
-  for (var i = 0; i < BRD_SQ_NUM; i++) {
+  for (var i = 0; i < BRD_SQ_NUM; ++i) {
     GameBoard.pieces[i] = SQUARES.OFFBOARD;
   }
 
-  for (var i = 0; i < 64; i++) {
+  for (var i = 0; i < 64; ++i) {
     GameBoard.pieces[SQ120(i)] = PIECES.EMPTY;
   }
 
@@ -300,7 +300,7 @@ function SqAttacked(sq, side) {
     }
   }
 
-  for(index = 0; index < 4; index++) {
+  for(index = 0; index < 4; ++index) {
     dir = RkDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
@@ -316,7 +316,7 @@ function SqAttacked(sq, side) {
     }
   }
 
-  for(index = 0; index < 4; index++) {
+  for(index = 0; index < 4; ++index) {
     dir = BiDir[index];
     t_sq = sq + dir;
     pce = GameBoard.pieces[t_sq];
