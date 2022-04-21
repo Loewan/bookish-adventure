@@ -52,7 +52,7 @@ function GenerateMoves() {
             if(GameBoard.pieces[sq + 10] == PIECES.EMPTY) {
                 // Add pawn move
                 if(RanksBrd[sq] == RANKS.R2 && GameBoard.pieces[sq + 20] == PIECES.EMPTY) {
-                    // Quiet move
+                    AddQuietMove( MOVE(sq, sq+20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
                 }
             }
 
@@ -66,10 +66,10 @@ function GenerateMoves() {
 
             if(GameBoard.enPas != SQUARES.NO_SQ) {
                 if(sq + 9 == GameBoard.enPas) {
-                    // Add enpas move
+                    AddEnPassantMove(MOVE(sq, sq+9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP));
                 }
                 if(sq + 11 == GameBoard.enPas) {
-                    // Add enpas move
+                    AddEnPassantMove(MOVE(sq, sq+11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP));
                 }
             }
         }
@@ -77,14 +77,14 @@ function GenerateMoves() {
         if(GameBoard.castlePerm & CASTLEBIT.WKCA) {
             if(GameBoard.pieces[SQUARES.F1] == PIECES.EMPTY && GameBoard.pieces[SQUARES.G1] == PIECES.EMPTY) {
                 if(SqAttacked(SQUARES.F1, COLORS.black) == BOOL.FALSE && SqAttacked(SQUARES.G1, COLORS.black) == BOOL.FALSE) {
-                    // Add quiet move
+                    AddQuietMove(MOVE(SQUARES.E1, SQUARES.G1,PIECES.EMPTY, PIECES.EMPTY, MFLAGCA));
                 }
             }
         }
         if(GameBoard.castlePerm & CASTLEBIT.WQCA) {
             if(GameBoard.pieces[SQUARES.D1] == PIECES.EMPTY && GameBoard.pieces[SQUARES.C1] == PIECES.EMPTY && GameBoard.pieces[SQUARES.B1] == PIECES.EMPTY) {
                 if(SqAttacked(SQUARES.D1, COLORS.black) == BOOL.FALSE && SqAttacked(SQUARES.E1, COLORS.black) == BOOL.FALSE) {
-                    // Add quiet move
+                    AddQuietMove(MOVE(SQUARES.E1, SQUARES.C1,PIECES.EMPTY, PIECES.EMPTY, MFLAGCA));
                 }
             }
         }
@@ -98,7 +98,7 @@ function GenerateMoves() {
             if(GameBoard.pieces[sq - 10] == PIECES.EMPTY) {
                 // Add pawn move
                 if(RanksBrd[sq] == RANKS.R7 && GameBoard.pieces[sq - 20] == PIECES.EMPTY) {
-                    // Quiet move
+                    AddQuietMove( MOVE(sq, sq-20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
                 }
             }
 
@@ -112,10 +112,10 @@ function GenerateMoves() {
 
             if(GameBoard.enPas != SQUARES.NO_SQ) {
                 if(sq - 9 == GameBoard.enPas) {
-                    // Add enpas move
+                    AddEnPassantMove(MOVE(sq, sq-9, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP));
                 }
                 if(sq - 11 == GameBoard.enPas) {
-                    // Add enpas move
+                    AddEnPassantMove(MOVE(sq, sq-11, PIECES.EMPTY, PIECES.EMPTY, MFLAGEP));
                 }
             }
         }
@@ -123,14 +123,14 @@ function GenerateMoves() {
         if(GameBoard.castlePerm & CASTLEBIT.BKCA) {
             if(GameBoard.pieces[SQUARES.F8] == PIECES.EMPTY && GameBoard.pieces[SQUARES.G8] == PIECES.EMPTY) {
                 if(SqAttacked(SQUARES.F8, COLORS.white) == BOOL.FALSE && SqAttacked(SQUARES.E8, COLORS.white) == BOOL.FALSE) {
-                    // Add quiet move
+                    AddQuietMove(MOVE(SQUARES.E8, SQUARES.G8,PIECES.EMPTY, PIECES.EMPTY, MFLAGCA));
                 }
             }
         }
         if(GameBoard.castlePerm & CASTLEBIT.BQCA) {
             if(GameBoard.pieces[SQUARES.D8] == PIECES.EMPTY && GameBoard.pieces[SQUARES.C8] == PIECES.EMPTY && GameBoard.pieces[SQUARES.B8] == PIECES.EMPTY) {
                 if(SqAttacked(SQUARES.D8, COLORS.white) == BOOL.FALSE && SqAttacked(SQUARES.E8, COLORS.white) == BOOL.FALSE) {
-                    // Add quiet move
+                    AddQuietMove(MOVE(SQUARES.E8, SQUARES.C8,PIECES.EMPTY, PIECES.EMPTY, MFLAGCA));
                 }
             }
         }
