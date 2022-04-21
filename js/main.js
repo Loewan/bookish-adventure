@@ -4,6 +4,7 @@ $(function() {
   ParseFen(START_FEN);
   PrintBoard();
   GenerateMoves();
+  PrintMoveList();
 
   /*
     unique?

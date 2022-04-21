@@ -195,7 +195,7 @@ function GenerateMoves() {
                 dir = PceDir[pce][index];
                 t_sq = sq + dir;
 
-                if(SQOFFBOARD(t_sq) == BOOL.FALSE){
+                if(SQOFFBOARD(t_sq) == BOOL.TRUE){
                     continue;
                 }
 
@@ -207,9 +207,9 @@ function GenerateMoves() {
                     AddQuietMove(MOVE(sq, t_sq,PIECES.EMPTY, PIECES.EMPTY, 0));
                 }
             }
-            pce = LoopNonSlidePce[pceIndex++];
+            
         }
-        
+        pce = LoopNonSlidePce[pceIndex++];
     }
 
     pceIndex = LoopSlideIndex[GameBoard.side];
