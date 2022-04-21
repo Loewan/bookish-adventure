@@ -21,6 +21,50 @@ function AddEnPassantMove(move) {
     GameBoard.moveListStart[GameBoard.ply+1]++;
 }
 
+function AddWhitePawnCaptureMove(from, to, cap) {
+    if(RanksBrd[from] == RANKS.R7) {
+        AddCaptureMove(MOVE(from, to, cap, PIECES.wQ, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.wR, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.wB, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.wN, 0));
+    } else {
+        AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, 0));
+    }
+}
+
+function AddBlackPawnCaptureMove(from, to, cap) {
+    if(RanksBrd[from] == RANKS.R2) {
+        AddCaptureMove(MOVE(from, to, cap, PIECES.bQ, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.bR, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.bB, 0));
+        AddCaptureMove(MOVE(from, to, cap, PIECES.bN, 0));
+    } else {
+        AddCaptureMove(MOVE(from, to, cap, PIECES.EMPTY, 0));
+    }
+}
+
+function AddWhitePawnQuietMove(from, to) {
+    if(RanksBrd[from] == RANKS.R7) {
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wQ, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wR, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wB, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.wN, 0));
+    } else {
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, 0));
+    }
+}
+
+function AddBlackPawnQuietMove(from, to) {
+    if(RanksBrd[from] == RANKS.R2) {
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bQ, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bR, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bB, 0));
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.bN, 0));
+    } else {
+        AddQuietMove(MOVE(from, to, PIECES.EMPTY, PIECES.EMPTY, 0));
+    }
+}
+
 /*
 GameBoard.moveListStart[] -> 'index' for the first move at a given ply
 GameBoard.moveList[index] ->
@@ -50,18 +94,18 @@ function GenerateMoves() {
             sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
 
             if(GameBoard.pieces[sq + 10] == PIECES.EMPTY) {
-                // Add pawn move
+                AddWhitePawnQuietMove(sq, sq+ 10);
                 if(RanksBrd[sq] == RANKS.R2 && GameBoard.pieces[sq + 20] == PIECES.EMPTY) {
                     AddQuietMove( MOVE(sq, sq+20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
                 }
             }
 
             if(SQOFFBOARD(sq + 9) == BOOL.FALSE && PieceCol[GameBoard.pieces[sq + 9]] == COLORS.black) {
-                // Add pawn cap move
+                AddWhitePawnCaptureMove(sq, sq+9, GameBoard.pieces[sq+9]);
             }
 
             if(SQOFFBOARD(sq + 11) == BOOL.FALSE && PieceCol[GameBoard.pieces[sq + 11]] == COLORS.black) {
-                // Add pawn cap move
+                AddWhitePawnCaptureMove(sq, sq+11, GameBoard.pieces[sq+11]);
             }
 
             if(GameBoard.enPas != SQUARES.NO_SQ) {
@@ -96,18 +140,18 @@ function GenerateMoves() {
             sq = GameBoard.pList[PCEINDEX(pceType, pceNum)];
 
             if(GameBoard.pieces[sq - 10] == PIECES.EMPTY) {
-                // Add pawn move
+                AddBlackPawnQuietMove(sq, sq-10);
                 if(RanksBrd[sq] == RANKS.R7 && GameBoard.pieces[sq - 20] == PIECES.EMPTY) {
                     AddQuietMove( MOVE(sq, sq-20, PIECES.EMPTY, PIECES.EMPTY, MFLAGPS));
                 }
             }
 
             if(SQOFFBOARD(sq - 9) == BOOL.FALSE && PieceCol[GameBoard.pieces[sq - 9]] == COLORS.white) {
-                // Add pawn cap move
+                AddBlackPawnCaptureMove(sq, sq-9, GameBoard.pieces[sq-9]);
             }
 
             if(SQOFFBOARD(sq - 11) == BOOL.FALSE && PieceCol[GameBoard.pieces[sq - 11]] == COLORS.white) {
-                // Add pawn cap move
+                AddBlackPawnCaptureMove(sq, sq-11, GameBoard.pieces[sq-11]);
             }
 
             if(GameBoard.enPas != SQUARES.NO_SQ) {
