@@ -94,7 +94,7 @@ function UpdateListsMaterials() {
 
   var piece, sq, index, color;
 
-  for (var i = 0; i < 14 * 120; ++i) {
+  for (var i = 0; i < 14 * 10; ++i) {
     GameBoard.pList[i] = PIECES.EMPTY;
   }
 
