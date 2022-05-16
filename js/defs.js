@@ -30,8 +30,7 @@ var PieceBig = [ BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.TRUE, BOOL.T
 var PieceMaj = [ BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.TRUE ];
 var PieceMin = [ BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE ];
 var PieceVal= [ 0, 100, 325, 325, 550, 1000, 50000, 100, 325, 325, 550, 1000, 50000  ];
-var PieceCol = [ COLORS.both, COLORS.white, COLORS.white, COLORS.white, COLORS.white, COLORS.white, COLORS.white,
-	COLORS.black, COLORS.black, COLORS.black, COLORS.black, COLORS.black, COLORS.black ];
+var PieceCol = [ COLORS.both, COLORS.white, COLORS.white, COLORS.white, COLORS.white, COLORS.white, COLORS.white, COLORS.black, COLORS.black, COLORS.black, COLORS.black, COLORS.black, COLORS.black ];
 
 var PiecePawn = [ BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE ];
 var PieceKnight = [ BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.TRUE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE, BOOL.FALSE ];
@@ -108,3 +107,11 @@ function SQOFFBOARD(sq) {
   if(FilesBrd[sq] == SQUARES.OFFBOARD) return BOOL.TRUE;
   return BOOL.FALSE;
 }
+
+function HASH_PCE(pce, sq) {
+  GameBoard.posKey ^= PieceKeys[((pce * 120) + sq)];
+}
+
+function HASH_CA(){ GameBoard.posKey ^= CastleKeys[GameBoard.castlePerm];}
+function HASH_SIDE(){ GameBoard.posKey ^= SideKey;}
+function HASH_EP(){ GameBoard.posKey ^= [GameBoard.enPas];}
